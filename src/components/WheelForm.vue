@@ -117,6 +117,11 @@ function generateWheel(): void {
   padding: 0.5rem;
   color: #1f1f1f;
   border-radius: 25px;
+  max-width: 400px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #routerNames input {
