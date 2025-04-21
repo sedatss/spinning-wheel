@@ -44,18 +44,16 @@ import {computed, ref} from 'vue';
 import {useRouter} from 'vue-router';
 
 const router = useRouter();
-
 const names = ref<{ name: string; color: string | null }[]>([]);
 const enteredName = ref('');
-
 const colors = ["Red", "Green", "Blue", "Yellow", "Purple"];
 const selectedColor = ref<string | null>(null);
 
-const isButtonDisabled = computed(() => {
+const isButtonDisabled = computed(function (): boolean {
   return !enteredName.value || !selectedColor.value;
 });
 
-const isGenerateWheelDisabled = computed(() => {
+const isGenerateWheelDisabled = computed(function (): boolean {
   return names.value.length < 2;
 });
 
@@ -87,10 +85,15 @@ function generateWheel(): void {
 
 #routerNames {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
+  margin: 3rem auto;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #routerNames h2 {
@@ -133,6 +136,7 @@ function generateWheel(): void {
   justify-content: center;
   align-items: center;
   height: 5vh;
+  margin-top: 20px;
 }
 
 button {
@@ -155,4 +159,5 @@ button:disabled {
   background-color: #cfcfcf;
   color: #888;
 }
+
 </style>

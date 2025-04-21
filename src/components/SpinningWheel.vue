@@ -26,7 +26,11 @@ const props = defineProps<{
 
 const segmentAngle = (2 * Math.PI) / props.names.length;
 
-const drawWheel = (): void => {
+onMounted(function() : void  {
+  drawWheel();
+});
+
+function drawWheel(): void {
   const canvas = wheelCanvas.value;
   if (!canvas) return;
 
@@ -71,10 +75,10 @@ const drawWheel = (): void => {
   ctx.closePath();
   ctx.fillStyle = 'black';
   ctx.fill();
-};
+}
 
 // Spin the wheel
-const spinWheel = (): void => {
+function spinWheel() : void {
   if (isSpinning.value) return;
 
   isSpinning.value = true;
@@ -85,7 +89,7 @@ const spinWheel = (): void => {
   const currentAngle = rotationAngle.value;
 
   // Function to animate the spin
-  const animateSpin = (currentTime: number) => {
+  function animateSpin(currentTime: number) {
     const elapsedTime = currentTime - startTime;
     if (elapsedTime < spinDuration) {
       const progress = elapsedTime / spinDuration;
@@ -101,12 +105,12 @@ const spinWheel = (): void => {
     }
 
     drawWheel();
-  };
+  }
 
   requestAnimationFrame(animateSpin);
-};
+}
 
-const determineWinner = (): void => {
+function determineWinner(): void {
   const canvas = wheelCanvas.value;
   if (!canvas) return;
 
@@ -118,15 +122,11 @@ const determineWinner = (): void => {
 
   const winnerIndex = Math.floor(pointerAngle / segmentAngle) %props.names.length;
   winner.value = props.names[winnerIndex].name;
-};
+}
 
-const closeModal = (): void => {
+function closeModal(): void {
   winner.value = null;
-};
-
-onMounted(() => {
-  drawWheel();
-});
+}
 
 </script>
 
