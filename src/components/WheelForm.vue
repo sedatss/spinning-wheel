@@ -2,7 +2,7 @@
   <form @submit.prevent="addName">
     <section id="routerNames">
       <h2>Add names to the Wheel of Names</h2>
-      <input type="text" v-model="enteredName"/>
+      <input type="text" v-model="enteredName" maxlength="20"/>
       <div>
         <label for="colorDropdown">Select a color:</label>
         <select v-model="selectedColor" id="colorDropdown">
@@ -120,8 +120,6 @@ function generateWheel(): void {
   max-width: 400px;
   text-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 #routerNames input {
